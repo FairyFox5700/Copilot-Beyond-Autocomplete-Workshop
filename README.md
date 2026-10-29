@@ -13,6 +13,8 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
 - `Workshop-Script-Practical-30-Min.md` — exact presenter wording, actions, expected states, and timing.
 - `Practical-Demo-Runbook.md` — click/run sequence and decision branches.
 - `Participant-Worksheet.md` — four-minute exercise and answer key.
+- `Slides-Grill-Me-Module.md` — slide-ready material for requirements interviewing, prompt-versus-instructions-versus-skill, approval, and verification.
+- `demo/scenarios/file-upload-interview.md` — presenter answer key for the deliberately vague file-upload feature.
 
 ## Demo structure
 
@@ -22,6 +24,7 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
   instructions/
   prompts/
   agents/
+  skills/grill-me/SKILL.md
 demo/
   src/Store.Checkout/
   src/Store.Checkout.Persistence/

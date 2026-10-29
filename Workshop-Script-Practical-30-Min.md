@@ -27,6 +27,7 @@
    - `.github/prompts/fix-checkout.prompt.md`
    - `.github/prompts/release-handoff.prompt.md`
    - `.github/agents/checkout-engineer.agent.md`
+   - `.github/skills/grill-me/SKILL.md`
 4. Open the Chat view and select **Agent** mode. If the custom-agent picker is available, confirm `checkout-engineer` appears, but keep the standard Agent selected at the start.
 5. In a PowerShell terminal at the repository root, run:
 
