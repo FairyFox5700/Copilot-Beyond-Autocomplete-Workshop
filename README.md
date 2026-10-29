@@ -24,6 +24,7 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
   agents/
 demo/
   src/Store.Checkout/
+  src/Store.Checkout.Persistence/
   src/Store.Checkout.Demo/
   tests/Store.Checkout.Tests/
   fixtures/
@@ -37,7 +38,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Reset-Demo.ps
 powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Verify-Baseline.ps1
 ```
 
-Expected: 2 passed, 1 intended failure, 0 skipped.
+Expected: 3 passed, 1 intended failure, 0 skipped.
 
 ## Apply and verify known fix
 

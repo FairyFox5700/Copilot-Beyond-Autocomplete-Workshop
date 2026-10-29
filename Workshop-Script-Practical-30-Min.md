@@ -23,6 +23,7 @@
    - `.github/copilot-instructions.md`
    - `.github/instructions/checkout-domain.instructions.md`
    - `.github/instructions/tests.instructions.md`
+   - `.github/instructions/migrations.instructions.md`
    - `.github/prompts/fix-checkout.prompt.md`
    - `.github/prompts/release-handoff.prompt.md`
    - `.github/agents/checkout-engineer.agent.md`
@@ -37,7 +38,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Verify-Baseli
 Expected final line:
 
 ```text
-BASELINE VERIFIED: exactly 2 passed, 1 intended failure, 0 skipped.
+BASELINE VERIFIED: exactly 3 passed, 1 intended failure, 0 skipped.
 ```
 
 6. Keep these tabs open:
@@ -115,7 +116,7 @@ Point to:
 ```text
 Expected: 10
 Actual:   11.00
-Failed: 1, Passed: 2, Skipped: 0, Total: 3
+Failed: 1, Passed: 3, Skipped: 0, Total: 4
 ```
 
 ### Ask
@@ -201,9 +202,19 @@ Open `.github/instructions/tests.instructions.md` and point to:
 applyTo: "demo/tests/**/*.cs"
 ```
 
+Then open `.github/instructions/migrations.instructions.md` beside `demo/src/Store.Checkout.Persistence/Migrations/20261029200000_InitialCheckout.cs`.
+
+Point to:
+
+```yaml
+applyTo: "demo/src/Store.Checkout.Persistence/Migrations/**/*.cs"
+```
+
+and the migration-only safeguards: existing migrations are immutable history, both `Up()` and `Down()` must be reviewed, destructive operations must be called out, and editing a migration never implies permission to apply it.
+
 ### Say
 
-> “This separation matters. Repository-wide rules stay short. Domain rules travel with domain files. Test conventions travel with test files. We avoid one giant instruction document that consumes attention and creates contradictions.”
+> “This separation matters. Repository-wide rules stay short. Domain rules travel with domain files. Test conventions travel with test files. Migration safety appears only when Copilot works on migration code. We avoid one giant instruction document that consumes attention and creates contradictions.”
 
 ### Participant action
 
@@ -368,7 +379,7 @@ Run the focused checkout tests now. Do not claim completion yet.
 ### Expected
 
 ```text
-Passed: 3, Failed: 0, Skipped: 0, Total: 3
+Passed: 4, Failed: 0, Skipped: 0, Total: 4
 ```
 
 ### Presenter does
@@ -604,7 +615,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Verify-Baseli
 Expected:
 
 ```text
-BASELINE VERIFIED: exactly 2 passed, 1 intended failure, 0 skipped.
+BASELINE VERIFIED: exactly 3 passed, 1 intended failure, 0 skipped.
 ```
 
 ### Final line

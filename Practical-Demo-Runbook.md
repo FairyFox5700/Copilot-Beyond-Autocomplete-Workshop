@@ -9,7 +9,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Reset-Demo.ps
 powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Verify-Baseline.ps1
 ```
 
-Expected: exactly 2 passing tests, 1 named failing test, 0 skipped.
+Expected: exactly 3 passing tests, 1 named failing test, 0 skipped.
 
 ## Weak attempt
 

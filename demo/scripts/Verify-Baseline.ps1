@@ -12,8 +12,9 @@ try {
         'LoyaltyDiscount_AppliesToMerchandiseButNotShipping [FAIL]',
         'Passed Store.Checkout.Tests.CheckoutCalculatorTests.NoDiscount_ReturnsSubtotalPlusShipping',
         'Passed Store.Checkout.Tests.CheckoutCalculatorTests.Discount_RoundsAwayFromZeroToCurrencyPrecision',
-        'Total tests: 3',
-        'Passed: 2',
+        'Passed Store.Checkout.Tests.CheckoutDbContextTests.CheckoutOrder_ModelRequiresCustomerAndTotal',
+        'Total tests: 4',
+        'Passed: 3',
         'Failed: 1'
     )
 
@@ -23,7 +24,7 @@ try {
     }
     if ($output -match 'Skipped:\s+[1-9]') { throw "Unexpected skipped tests.`n$output" }
 
-    Write-Host 'BASELINE VERIFIED: exactly 2 passed, 1 intended failure, 0 skipped.' -ForegroundColor Yellow
+    Write-Host 'BASELINE VERIFIED: exactly 3 passed, 1 intended failure, 0 skipped.' -ForegroundColor Yellow
 }
 finally {
     Pop-Location

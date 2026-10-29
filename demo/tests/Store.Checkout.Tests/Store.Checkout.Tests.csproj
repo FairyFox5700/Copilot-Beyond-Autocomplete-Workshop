@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Store.Checkout\Store.Checkout.csproj" />
+    <ProjectReference Include="..\..\src\Store.Checkout.Persistence\Store.Checkout.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
