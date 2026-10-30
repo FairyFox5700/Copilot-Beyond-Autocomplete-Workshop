@@ -633,8 +633,252 @@ Wait or recall the prompt when:
 
 > Queue routine continuation. Do not queue irreversible decisions before reviewing the evidence.
 
+---
+
+## Slide 81 — Usage and Context Are Different Questions
+
+Use separate commands because they answer different questions:
+
+```text
+/usage    → What has this session consumed?
+/context  → What is occupying the current context window?
+```
+
+`/usage` reports session metrics such as duration, edited lines, per-model token totals, and applicable AI-credit consumption.
+
+`/context` visualizes token allocation, including system/tools, message history, free space, and buffer.
+
+High usage does not necessarily mean the current context is full, and a crowded context does not tell you the total session cost.
+
+---
+
+## Slide 82 — Inspect Usage
+
+Run:
+
+```text
+/usage
+```
+
+Look for:
+
+- models used during the session;
+- input and output token totals by model;
+- session duration;
+- lines of code edited;
+- AI credits when applicable to the account.
+
+Use it to answer:
+
+- Did a model switch change consumption?
+- Did a high-effort phase dominate usage?
+- Is a routine task using more capability than necessary?
+
+Do not use usage totals as proof of output quality.
+
+---
+
+## Slide 83 — Inspect the Context Window
+
+Run:
+
+```text
+/context
+```
+
+Analyze:
+
+- **System/tools:** static runtime instructions and available tool definitions
+- **Message history:** prompts, responses, tool output, and summaries
+- **Free space:** remaining capacity for new evidence and work
+- **Buffer:** space reserved for safe operation and output
+
+Warning signs:
+
+- large static context before meaningful work begins;
+- message history dominated by logs or failed attempts;
+- little free space before implementation starts;
+- repeated compaction without a durable checkpoint.
+
+---
+
+## Slide 84 — Inspect What Can Influence the Session
+
+Use dedicated commands:
+
+| Question | Command |
+|---|---|
+| Which instruction files are enabled? | `/instructions` |
+| Which skills are available? | `/skills list` |
+| What does one skill contain and where is it from? | `/skills info SKILL-NAME` |
+| What is the current session state? | `/session` |
+| What summaries were created by compaction? | `/session checkpoints` |
+| What is in one checkpoint? | `/session checkpoints NUMBER` |
+| Which temporary artifacts exist? | `/session files` |
+| What plan is active? | `/session plan` |
+
+`/context` shows allocation. These commands help explain what contributed to the session.
+
+---
+
+## Slide 85 — Real Workshop Context Audit
+
+At the beginning of the checkout workshop, run:
+
+```text
+/usage
+/context
+/instructions
+/skills list
+/skills info grill-me
+/skills info evidence-checkpoint
+/session
+```
+
+Ask participants:
+
+1. Is this a fresh or already expensive session?
+2. How much context is static versus conversation history?
+3. Which instruction files are relevant to the checkout defect?
+4. Do we need either skill for a one-line deterministic fix?
+5. Are any skills or instructions duplicated?
+6. Should we continue this session or start a focused one?
+
+Do not compare exact token numbers across attendees; model, client, configuration, and available tools differ.
+
+---
+
+## Slide 86 — How Skills Affect Context
+
+Skills are discovered by name and description. When Copilot chooses or you invoke a skill, its `SKILL.md` instructions are injected into the session context.
+
+Skills become expensive or distracting when:
+
+- descriptions are so broad that many skills appear relevant;
+- several skills are invoked for one small task;
+- skill bodies are long and duplicate repository instructions;
+- large references are loaded when only one rule is needed;
+- multiple skills prescribe conflicting workflows;
+- a skill remains part of a long session after its phase has ended.
+
+Not every discovered skill necessarily injects its full body. The problem is uncontrolled selection and oversized skill content, not merely the existence of files on disk.
+
+---
+
+## Slide 87 — Real Example: Useful Skill vs Skill Overload
+
+### Appropriate for the file-upload feature
+
+```text
+grill-me            → requirements interview
+evidence-checkpoint → long investigation and model handoff
+```
+
+Each skill owns a different phase.
+
+### Excessive for the checkout defect
+
+```text
+grill-me
+evidence-checkpoint
+migration-review
+security-review
+release-handoff
+architecture-planner
+```
+
+The defect already has:
+
+- an explicit business rule;
+- one failing focused test;
+- one authoritative calculation;
+- deterministic verification.
+
+Loading several workflows adds instructions without adding evidence.
+
+---
+
+## Slide 88 — Skill Hygiene: Do
+
+- Give every skill a narrow trigger in its description.
+- Keep `SKILL.md` focused on the reusable procedure.
+- Put optional detail in supporting references.
+- Avoid duplicating repository-wide instructions.
+- Use `/skills info NAME` before trusting an unfamiliar skill.
+- Disable skills that are not appropriate for the current repository or session.
+- Use one skill per distinct need rather than stacking overlapping workflows.
+- Recheck `/context` after enabling or invoking substantial customizations.
+- Keep a durable checkpoint before compaction or a fresh session.
+
+---
+
+## Slide 89 — Skill Hygiene: Do Not
+
+- Do not install every popular skill “just in case.”
+- Do not use descriptions such as “use for all coding tasks.”
+- Do not copy the same standards into instructions, agents, prompts, and skills.
+- Do not bundle unrelated workflows into one giant skill.
+- Do not invoke multiple reviewers with identical responsibilities.
+- Do not paste complete logs and documents into a skill body.
+- Do not assume disabling a skill erases content already present in conversation history.
+- Do not compact blindly and trust a lossy summary as the only evidence record.
+
+---
+
+## Slide 90 — Compact Deliberately
+
+Copilot CLI manages context automatically, but manual compaction is available:
+
+```text
+/compact focus on the verified upload decisions, evidence,
+unresolved risks, and approved next action
+```
+
+Before compacting:
+
+1. update the repository checkpoint;
+2. record decisions and rejected hypotheses;
+3. preserve decisive command results;
+4. identify the next action.
+
+After compacting:
+
+```text
+/session checkpoints
+/session checkpoints NUMBER
+```
+
+Review the generated summary. If a critical decision disappeared, repair the durable checkpoint rather than relying on conversation memory.
+
+---
+
+## Slide 91 — Start Fresh for Unrelated Work
+
+Use a new or cleared session when:
+
+- the next task is unrelated;
+- skills and instructions from the previous phase are no longer useful;
+- old failures dominate the message history;
+- several compactions have made the reasoning difficult to audit;
+- a strong handoff already contains everything needed to continue.
+
+A practical sequence:
+
+```text
+1. Update evidence checkpoint
+2. Inspect /usage and /context
+3. Review /instructions and /skills list
+4. Disable irrelevant customizations if needed
+5. Start a focused session
+6. Load only the checkpoint and relevant files
+```
+
+> Context management is not about chasing the smallest token count. It is about preserving the highest-signal evidence for the current decision.
+
 ## Sources
 
 - GitHub Docs — Choosing a model in GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/choose-a-model
 - GitHub Docs — Copilot CLI command reference: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference
 - VS Code Docs — AI language models in VS Code: https://code.visualstudio.com/docs/agent-customization/language-models
+- GitHub Docs — Using GitHub Copilot CLI and managing context: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview
+- GitHub Docs — Adding agent skills for GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills
