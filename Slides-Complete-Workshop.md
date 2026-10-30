@@ -21,6 +21,42 @@ A single Markdown source for the workshop deck. The runnable project and present
 - Different from a one-time chat prompt
 - Guidance, not deterministic enforcement
 
+### Generate a starter configuration
+
+From GitHub Copilot CLI or a supported VS Code Copilot chat at the repository root:
+
+```text
+/init
+```
+
+`/init` inspects the project and initializes Copilot instructions and related agentic configuration. Review every generated file before committing it.
+
+### Generate only the repository instructions with Copilot
+
+Ask Copilot:
+
+```text
+Inspect this repository and draft `.github/copilot-instructions.md`.
+Include only facts you can verify from current files:
+- project structure and authoritative layers;
+- coding and architecture conventions;
+- build and test commands;
+- security and error-handling constraints;
+- verification required before completion.
+
+Keep it concise. Do not copy the README. Identify guidance that should
+be moved into path-specific instruction files. Do not commit anything.
+```
+
+### Manual location in the workshop project
+
+```text
+C:\Users\tysch\Documents\Copilot-Beyond-Autocomplete-Workshop\
+  .github\copilot-instructions.md
+```
+
+After creating or changing CLI instructions, start a new session with `/new` or exit and resume the CLI session. Use `/instructions` to inspect the files discovered for the session.
+
 ---
 
 ## Slide 2 — Instruction Levels
