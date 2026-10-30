@@ -1077,6 +1077,267 @@ Right: keep evidence-backed project state outside the conversation
 
 > Compact for continuity. Clear for separation. Save externally for durability.
 
+---
+
+## Slide 101 — What GitHub Copilot Memory Is
+
+Copilot Memory is persistent context that Copilot can reuse across sessions when settings and policies allow it.
+
+It is different from:
+
+- the active conversation context;
+- committed custom instruction files;
+- an investigation checkpoint;
+- an architectural decision record.
+
+Copilot can create memories automatically while working. You can also ask it to remember something, but the model decides whether to store it and whether a stored memory is relevant later.
+
+---
+
+## Slide 102 — Two Memory Types
+
+| Memory type | What it captures | Scope |
+|---|---|---|
+| **User-level preferences** | How you personally prefer Copilot to collaborate, present work, request approval, or follow reusable workflows | Your Copilot interactions across repositories |
+| **Repository-level facts** | Codebase facts such as architecture, conventions, dependencies, build commands, test commands, and project-specific rules | One repository; shared with eligible collaborators |
+
+Copilot chooses the type based on who the information applies to—not simply who said it.
+
+---
+
+## Slide 103 — Memory Does Not Have a Repository File Path
+
+Copilot Memory is not stored in:
+
+```text
+.github/copilot-instructions.md
+AGENTS.md
+.github/skills/
+```
+
+Management locations:
+
+```text
+User preference:
+GitHub personal settings → Copilot → Memory
+
+Repository fact:
+Repository → Settings → Copilot → Memory
+```
+
+Repository administrators and organization or enterprise policies can control whether repository facts are stored and used. Client-level settings can further restrict memory.
+
+---
+
+## Slide 104 — Real Workshop Repository Paths
+
+Repository root:
+
+```text
+C:\Users\tysch\Documents\Copilot-Beyond-Autocomplete-Workshop
+```
+
+Useful evidence paths:
+
+```text
+.github/copilot-instructions.md
+.github/instructions/checkout-domain.instructions.md
+.github/instructions/migrations.instructions.md
+demo/src/Store.Checkout/CheckoutCalculator.cs
+demo/src/Store.Checkout.Persistence/CheckoutDbContext.cs
+demo/src/Store.Checkout.Persistence/Migrations/20261029200000_InitialCheckout.cs
+demo/scripts/Verify-Baseline.ps1
+demo/scripts/Verify-Fixed.ps1
+demo/scripts/Reset-Demo.ps1
+```
+
+A repository memory should cite current source evidence rather than restating an unsupported claim.
+
+---
+
+## Slide 105 — Real User-Level Preference Example
+
+Prompt Copilot:
+
+```text
+Remember this as my user-level preference across repositories:
+Explain the intended change before making multi-file edits, and ask for
+my approval before generating or applying database migrations.
+```
+
+Why this is user-level:
+
+- It describes how one person prefers to work.
+- It applies across repositories.
+- It is not a fact about the checkout codebase.
+- It contains no sensitive information.
+
+Do not phrase a personal preference as though it were a team-wide repository rule.
+
+---
+
+## Slide 106 — Real Repository-Level Fact Example
+
+Prompt Copilot from the workshop repository:
+
+```text
+Create a repository-level memory for this repository:
+The presentation baseline is verified by
+`demo/scripts/Verify-Baseline.ps1`.
+The corrected state is verified by
+`demo/scripts/Verify-Fixed.ps1`, and
+`demo/scripts/Reset-Demo.ps1` restores the intentional baseline.
+Check these files on the current branch before using this fact.
+```
+
+Why this is repository-level:
+
+- The paths exist only in this repository.
+- The workflow is useful to any workshop contributor.
+- The fact can be checked against current files.
+- It should not follow the user into unrelated repositories.
+
+Storage is not guaranteed merely because you requested it; verify in repository Memory settings.
+
+---
+
+## Slide 107 — Another Repository Fact: Persistence Layout
+
+Possible prompt:
+
+```text
+Create a repository-level memory:
+Checkout persistence uses EF Core with SQLite in
+`demo/src/Store.Checkout.Persistence`.
+The DbContext is `CheckoutDbContext.cs`, and migration history is under
+`demo/src/Store.Checkout.Persistence/Migrations`.
+Verify these citations against the current branch before using the fact.
+```
+
+Evidence:
+
+- `Store.Checkout.Persistence.csproj` references `Microsoft.EntityFrameworkCore.Sqlite`.
+- `CheckoutDbContext.cs` contains the EF Core model.
+- `Migrations/20261029200000_InitialCheckout.cs` contains migration history.
+
+This is descriptive codebase knowledge, not permission to generate or apply migrations.
+
+---
+
+## Slide 108 — What Should Not Become Memory
+
+Do not store:
+
+- secrets, tokens, credentials, or customer data;
+- temporary debugging hypotheses;
+- one-time task status;
+- stale branch-specific details;
+- unverified claims;
+- information that belongs in an ADR or test;
+- mandatory team rules that must apply consistently;
+- duplicated copies of existing committed instructions.
+
+Example that should **not** become memory:
+
+```text
+The current checkout failure is probably caused by rounding.
+```
+
+The repository evidence rejects that hypothesis.
+
+---
+
+## Slide 109 — Memory vs Instructions vs ADR vs Checkpoint
+
+| Need | Correct home |
+|---|---|
+| Personal collaboration preference across repositories | User-level Copilot Memory |
+| Useful fact learned about one repository | Repository-level Copilot Memory |
+| Rule Copilot should consistently follow in this repository | `.github/copilot-instructions.md` |
+| Rule for matching files only | `.github/instructions/*.instructions.md` |
+| Architectural decision requiring durable rationale | `docs/adr/*.md` |
+| Temporary investigation evidence and next action | `demo/investigations/*.md` |
+| Behavior that must be enforced | Tests, analyzers, CI, permissions, or deployment policy |
+
+GitHub recommends custom instructions rather than memory when guidance must be applied consistently.
+
+---
+
+## Slide 110 — Real Example: Do Not Duplicate the Shipping Rule
+
+The rule already exists at:
+
+```text
+.github/instructions/checkout-domain.instructions.md
+```
+
+```markdown
+- Loyalty discounts apply to merchandise only; shipping is never discountable.
+```
+
+Do not also ask Copilot to store an identical repository memory.
+
+Why:
+
+- The instruction is version-controlled.
+- Its path scope is explicit.
+- The team can review changes.
+- Duplicate memory can drift or remain after the file changes.
+
+Use memory for helpful learned facts, not as an invisible replacement for committed guidance.
+
+---
+
+## Slide 111 — Memory Best Practices
+
+Do:
+
+- State intended scope explicitly: “for me across repositories” or “for this repository.”
+- Store durable, non-sensitive, verified information.
+- Use exact repository paths and evidence.
+- Review stored memories in GitHub settings.
+- Delete stale or incorrect memories.
+- Keep mandatory rules in version-controlled instructions.
+- Start a fresh session after disabling memory if previous memories are already in context.
+
+Do not:
+
+- Assume a request guarantees storage.
+- Assume a stored memory will always be used.
+- Treat memory as permanent truth.
+- Use memory as a security or policy boundary.
+- Store facts that are easier and safer to infer from current code.
+
+---
+
+## Slide 112 — Retention, Reinforcement, and Staleness
+
+Copilot Memory is intentionally not permanent:
+
+- The default expiry period is 90 days without reinforcement.
+- User-level preferences use the default retention period.
+- Organizations and enterprises can configure repository-fact retention from 7 to 180 days.
+- Repository facts are checked against cited files on the current branch before use.
+- Retrieving a memory alone does not necessarily make it authoritative.
+
+Treat memory as helpful, reviewable context—not as the source of truth.
+
+---
+
+## Slide 113 — Workshop Exercise: Classify the Knowledge
+
+| Statement | Best location |
+|---|---|
+| “Across repositories, explain changes before applying them.” | User-level memory |
+| “The workshop reset script restores the intentional baseline.” | Repository-level fact, with path citation |
+| “Shipping is never discountable.” | Existing path-specific instruction |
+| “Use xUnit for tests.” | Version-controlled test instruction |
+| “We rejected a migration because no schema participates.” | Investigation checkpoint |
+| “Uploaded files remain quarantined until scanning succeeds.” | ADR plus tests; concise instruction if broadly needed |
+| “Never apply production migrations without approval.” | Instructions plus technical permissions and deployment policy |
+
+> Memory helps Copilot remember. It does not replace version control, executable evidence, or governance.
+
 ## Sources
 
 - GitHub Docs — Choosing a model in GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/choose-a-model
@@ -1084,3 +1345,6 @@ Right: keep evidence-backed project state outside the conversation
 - VS Code Docs — AI language models in VS Code: https://code.visualstudio.com/docs/agent-customization/language-models
 - GitHub Docs — Using GitHub Copilot CLI and managing context: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview
 - GitHub Docs — Adding agent skills for GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills
+- GitHub Docs — About GitHub Copilot Memory: https://docs.github.com/en/copilot/concepts/prompting-and-context/copilot-memory
+- GitHub Docs — Manually creating memories: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory/create-memories
+- GitHub Docs — Managing Copilot Memory for yourself: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory/manage-for-yourself
