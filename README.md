@@ -10,6 +10,7 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
 
 ## Workshop documents
 
+- `Slides-Complete-Workshop.md` — the complete slide source in one Markdown file, slides 1–113.
 - `Workshop-Script-Practical-30-Min.md` — exact presenter wording, actions, expected states, and timing.
 - `Practical-Demo-Runbook.md` — click/run sequence and decision branches.
 - `Participant-Worksheet.md` — four-minute exercise and answer key.
