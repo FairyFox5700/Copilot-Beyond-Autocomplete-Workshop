@@ -875,6 +875,208 @@ A practical sequence:
 
 > Context management is not about chasing the smallest token count. It is about preserving the highest-signal evidence for the current decision.
 
+---
+
+## Slide 92 — Compact, Clear, and External State Solve Different Problems
+
+Do not treat them as interchangeable:
+
+```text
+/compact       → Same task, smaller active conversation
+/clear or /new → Different task, fresh conversation
+External state → Knowledge must survive conversations and sessions
+```
+
+The decision is about continuity:
+
+- Do I still need the current reasoning chain?
+- Is the next task related?
+- Must another session or person recover these decisions?
+
+---
+
+## Slide 93 — Compact: Continue the Same Task
+
+```text
+Large active conversation
+          ↓
+/compact focus on verified findings and next action
+          ↓
+Compressed conversation summary
+          ↓
+Continue the same investigation
+```
+
+Use compaction when:
+
+- the goal has not changed;
+- accumulated history is crowding the window;
+- earlier evidence still matters;
+- you want to continue in the same session.
+
+Before compacting, update external evidence. Afterward, inspect:
+
+```text
+/session checkpoints
+/session checkpoints NUMBER
+```
+
+Compaction is lossy summarization, not durable project memory.
+
+---
+
+## Slide 94 — Clear: Start a Different Task
+
+GitHub Copilot CLI supports:
+
+```text
+/clear
+/new
+/reset
+```
+
+These start a new conversation. You can optionally include the next prompt:
+
+```text
+/clear Review the checkout migration for destructive operations.
+```
+
+Use a fresh conversation when:
+
+- the previous task is complete;
+- the new task is unrelated;
+- old instructions, failures, or decisions would distract the agent;
+- you have already preserved anything worth keeping.
+
+`Ctrl+L` only clears the terminal display. It does not create a fresh conversation.
+
+---
+
+## Slide 95 — External State: Preserve Knowledge
+
+Use repository or shared artifacts when knowledge must survive the active conversation:
+
+```text
+.github/copilot-instructions.md             → durable repository rules
+.github/instructions/*.instructions.md      → path-specific rules
+.github/skills/*/SKILL.md                    → repeatable workflows
+docs/adr/*.md                               → architectural decisions
+demo/investigations/*.md                    → evidence and investigation state
+tests and verification scripts              → executable expectations
+issues or pull requests                      → team-visible work history
+```
+
+Do not put temporary investigation details into global instructions. Promote only stable, reusable knowledge.
+
+---
+
+## Slide 96 — Copilot Decision Table
+
+| Scenario | Best choice | Why |
+|---|---|---|
+| Same bug investigation, context is crowded | Checkpoint + `/compact` | Preserve evidence and continue the same task |
+| Feature implementation runs for several hours | External checkpoint + periodic compact | Decisions must survive lossy summaries |
+| Feature A is complete; Feature B is unrelated | Save useful state, then `/clear` or `/new` | Prevent irrelevant history from influencing the new task |
+| Monorepo investigation continues across days | External evidence ledger or ADR | Findings must survive sessions and be reviewable |
+| Huge files or lengthy command output | Selective reading or bounded subagent | Avoid filling the main context with low-signal text |
+| Architecture decision must guide future work | ADR or concise repository instructions | Durable, versioned project knowledge |
+| Separate subsystem needs research | Read-only subagent with evidence contract | Isolate exploration and return concise findings |
+
+---
+
+## Slide 97 — Real Example: Checkout Defect
+
+The checkout defect is small and deterministic.
+
+Best workflow:
+
+```text
+1. Run the focused failing test.
+2. Inspect CheckoutCalculator.cs.
+3. Apply the one-line fix.
+4. Run the verification ladder.
+```
+
+Do not compact merely because `/context` shows some usage.
+
+After completion, starting an unrelated migration review:
+
+```text
+/clear Review the checkout migration for destructive operations.
+Do not modify or apply migrations.
+```
+
+The previous defect history is not useful to the new review.
+
+---
+
+## Slide 98 — Real Example: File-Upload Feature
+
+The upload feature spans requirements, security, storage, asynchronous scanning, and failure recovery.
+
+Use all three mechanisms deliberately:
+
+```text
+External state:
+  demo/investigations/file-upload-model-handoff.md
+
+Same long task:
+  /compact focus on approved upload decisions, evidence,
+  unresolved risks, and the next action
+
+Unrelated next task:
+  /clear Investigate checkout performance independently.
+```
+
+The handoff remains authoritative if a compacted summary omits a detail.
+
+---
+
+## Slide 99 — What to Save Externally
+
+Save:
+
+- confirmed findings with exact evidence;
+- decisions and rationale;
+- rejected hypotheses;
+- approved scope and non-goals;
+- commands executed and exact results;
+- unresolved risks;
+- the next action;
+- stable architecture decisions worth reusing.
+
+Do not save as durable guidance:
+
+- raw chain-of-thought or speculative reasoning;
+- obsolete hypotheses without a rejected status;
+- enormous unfiltered logs;
+- secrets or sensitive data;
+- one-off task details in global instruction files;
+- claims that were never verified.
+
+---
+
+## Slide 100 — Context-Management Anti-Patterns
+
+```text
+Wrong: /compact because the next task is unrelated
+Right: /clear or /new
+
+Wrong: /clear before preserving important findings
+Right: update the external checkpoint first
+
+Wrong: save every conversation detail in copilot-instructions.md
+Right: promote only stable repository rules
+
+Wrong: paste a 20,000-line log into chat
+Right: retain the log, extract decisive lines, and cite its location
+
+Wrong: treat an internal compaction summary as the only source of truth
+Right: keep evidence-backed project state outside the conversation
+```
+
+> Compact for continuity. Clear for separation. Save externally for durability.
+
 ## Sources
 
 - GitHub Docs — Choosing a model in GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/choose-a-model

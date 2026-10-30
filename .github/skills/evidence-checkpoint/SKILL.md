@@ -61,6 +61,16 @@ Produce a compact handoff containing:
 
 A handoff must be sufficient for a fresh agent to continue after reading only the scratchpad and cited files.
 
+## Context-management decision
+
+Use the right mechanism before continuing:
+
+- **Same task, crowded conversation:** update the scratchpad, then use `/compact` with focus instructions. Review the generated `/session checkpoints` summary afterward.
+- **Different or unrelated task:** preserve anything valuable, then start a fresh conversation with `/clear` or `/new`.
+- **Knowledge must survive sessions:** store it in the repository scratchpad, an ADR, tests, or another maintained external artifact.
+
+Do not treat a compaction summary as the only evidence record, and do not place temporary investigation details into repository-wide instructions.
+
 ## Completion
 
 Before closing the investigation:

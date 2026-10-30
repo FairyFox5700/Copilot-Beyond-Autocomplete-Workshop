@@ -20,6 +20,7 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
 - `demo/scenarios/instruction-hierarchy-audit.md` — deliberately conflicting monorepo instructions and the recommended redesign.
 - `demo/scenarios/prompt-queue-and-recall.md` — live Copilot CLI example for queueing, recalling, editing, and safely resubmitting a draft prompt.
 - `demo/scenarios/context-and-skill-audit.md` — live audit using `/usage`, `/context`, `/instructions`, `/skills`, `/session`, and `/compact`.
+- `demo/scenarios/compact-clear-external-state.md` — Copilot-specific decision exercise for continuing, starting fresh, or preserving durable knowledge.
 - `demo/investigations/checkout-discount-checkpoint.md` — completed evidence ledger for the real checkout defect.
 - `demo/investigations/file-upload-model-handoff.md` — decision-preserving handoff for switching models between exploration, planning, implementation, and review.
 
