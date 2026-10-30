@@ -513,6 +513,126 @@ Stay at default or lower effort when:
 
 > Increase reasoning for a specific difficult decision, then reduce it again for routine execution. Effort does not replace requirements, evidence, tests, or review.
 
+---
+
+## Slide 76 — Copilot CLI Equivalent of “Stash My Prompt”
+
+GitHub Copilot CLI does not document Claude Code’s `Ctrl+S` prompt-stash behavior.
+
+Use the Copilot-native controls instead:
+
+```text
+Ctrl+Q or Ctrl+Enter → queue the current input while the agent is busy
+↑ on an empty prompt → recall the latest queued or steering prompt for editing
+Ctrl+G               → edit a long draft in your external editor
+Ctrl+X then /        → run a slash command without retyping the current draft
+```
+
+Queued entries show as pending and can be canceled before execution.
+
+These queue and recall controls apply to local Copilot CLI sessions.
+
+---
+
+## Slide 77 — Queue, Recall, Edit, Requeue
+
+While Copilot is working:
+
+1. Draft the next prompt.
+2. Press `Ctrl+Q` to queue it instead of interrupting the current turn.
+3. If the current result changes your next step, wait until the input box is empty.
+4. Press `↑` to recall the latest queued prompt.
+5. Edit it and press `Ctrl+Q` again to requeue, or submit normally when Copilot is idle.
+
+For a long prompt:
+
+```text
+Ctrl+G
+```
+
+Edit it in `$EDITOR`, save, and return to the CLI input.
+
+> A queued prompt is scheduled work, not durable memory. Put decisions in the checkpoint file.
+
+---
+
+## Slide 78 — Real Workshop Example
+
+Copilot is investigating the file-upload architecture. While it works, draft:
+
+```text
+Using the investigation results, propose the smallest provider-neutral
+implementation and test plan. Do not write code until I approve.
+```
+
+Press:
+
+```text
+Ctrl+Q
+```
+
+The investigation discovers that malware scanning must be asynchronous. The queued prompt now needs a stronger constraint.
+
+Recall it with `↑` and revise:
+
+```text
+Using the verified investigation checkpoint, propose the smallest
+provider-neutral implementation and test plan.
+
+Include quarantine and asynchronous scan states.
+Do not expose file content before a clean scan.
+Do not write code until I approve.
+```
+
+Requeue it or submit it after reviewing the investigation.
+
+---
+
+## Slide 79 — Change the Model Without Losing the Draft
+
+If you have already typed the next prompt and decide the planning phase needs a different model:
+
+```text
+Ctrl+X then /
+```
+
+Run:
+
+```text
+/model
+```
+
+Select the model and effort level, then return to the draft instead of copying it into a temporary editor.
+
+This is useful for:
+
+- switching from exploration to architecture reasoning;
+- increasing effort before security analysis;
+- returning to a routine implementation model afterward.
+
+The model change is queued if the current turn is still running.
+
+---
+
+## Slide 80 — When to Queue and When to Wait
+
+Queue when:
+
+- the next step is independent of the exact wording of the current answer;
+- you are scheduling a checkpoint, test run, or summary;
+- the task order is already approved;
+- you want to avoid interrupting a long-running turn.
+
+Wait or recall the prompt when:
+
+- the next step depends on unresolved findings;
+- approval is required before implementation;
+- the agent has asked a question;
+- the current result may change scope or architecture;
+- the queued prompt could authorize an unsafe or premature action.
+
+> Queue routine continuation. Do not queue irreversible decisions before reviewing the evidence.
+
 ## Sources
 
 - GitHub Docs — Choosing a model in GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/choose-a-model
