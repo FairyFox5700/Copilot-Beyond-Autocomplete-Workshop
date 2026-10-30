@@ -269,3 +269,143 @@ Handoff              = restartable continuation contract
 ```
 
 > The goal is not to make the agent remember everything. The goal is to make the work recoverable when it does not.
+
+---
+
+## Slide 67 — Switch Models When the Work Changes
+
+One model does not have to handle every phase of a long task.
+
+A practical pattern is:
+
+```text
+Fast model             → repository exploration and routine questions
+Higher-reasoning model → architecture, ambiguity, security, hard debugging
+Implementation model   → approved, well-bounded code changes
+Review model           → independent diff and test review
+```
+
+Switch because the task changed—not because the current answer is merely slow.
+
+Model availability, names, context tiers, and reasoning levels depend on the account and Copilot surface.
+
+---
+
+## Slide 68 — Copilot CLI: Switch Mid-Session
+
+In an interactive GitHub Copilot CLI session:
+
+```text
+/model
+```
+
+Then select the model available to your account.
+
+Important behavior:
+
+- The default change is for the current session.
+- If Copilot is idle, the selection takes effect immediately.
+- If a turn is running, the switch is queued until that turn finishes.
+- The selected model continues for the rest of the session unless changed again.
+- Do not use a global or repository default change merely for a workshop experiment.
+
+In VS Code, use the model picker in the chat input for the current conversation.
+
+---
+
+## Slide 69 — Real Workshop Example: Change Models by Phase
+
+Use the file-upload scenario:
+
+### Phase 1 — Explore with a fast model
+
+```text
+Inspect the repository for existing upload, storage, authorization,
+and background-processing patterns. Do not edit files.
+Record evidence in the investigation checkpoint.
+```
+
+### Phase 2 — Switch for difficult reasoning
+
+```text
+/model
+```
+
+Select an available higher-reasoning model, then ask:
+
+```text
+Use the grill-me and evidence-checkpoint skills.
+Challenge the upload requirements, identify unresolved security and
+failure decisions, and propose the smallest architecture.
+Do not write code.
+```
+
+### Phase 3 — Switch for bounded implementation
+
+After approving the plan, use `/model` again and select an appropriate implementation model:
+
+```text
+Implement only the approved first slice.
+Run the agreed tests and update the checkpoint with results.
+```
+
+### Phase 4 — Optional independent review
+
+Switch again or use a review agent:
+
+```text
+Review the final diff against the approved decision log.
+Do not modify files. Report unsupported assumptions and missing tests.
+```
+
+---
+
+## Slide 70 — Checkpoint Before Switching
+
+Switching the model does not automatically repair weak context.
+
+Before `/model`, record:
+
+```text
+Goal
+Confirmed evidence
+Approved decisions
+Rejected hypotheses
+Commands and results
+Unresolved questions
+Next action
+```
+
+Then give the next model this instruction:
+
+```text
+Read demo/investigations/file-upload-model-handoff.md and verify its
+cited evidence before continuing. Do not reopen approved decisions
+unless you find contradictory evidence.
+```
+
+This reduces repeated searches and prevents the new model from silently changing the contract.
+
+---
+
+## Slide 71 — When Not to Switch Models
+
+Do not switch merely because:
+
+- the answer is taking longer than expected;
+- one attempt failed without diagnosing why;
+- the task is a tiny, deterministic fix;
+- the current model already has a coherent plan and evidence;
+- the switch would add more coordination than value.
+
+For the checkout discount defect, one model plus tests is enough.
+
+For the upload feature—with authorization, content validation, quarantine, storage compensation, and asynchronous scanning—a deliberate model switch can be useful.
+
+> Match the model to the phase, but preserve decisions and evidence outside the model.
+
+## Sources
+
+- GitHub Docs — Choosing a model in GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/choose-a-model
+- GitHub Docs — Copilot CLI command reference: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference
+- VS Code Docs — AI language models in VS Code: https://code.visualstudio.com/docs/agent-customization/language-models
