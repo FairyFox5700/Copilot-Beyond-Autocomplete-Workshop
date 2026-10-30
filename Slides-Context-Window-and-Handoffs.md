@@ -404,6 +404,115 @@ For the upload feature—with authorization, content validation, quarantine, sto
 
 > Match the model to the phase, but preserve decisions and evidence outside the model.
 
+---
+
+## Slide 72 — Change Reasoning Effort When Complexity Changes
+
+Some reasoning models expose multiple effort levels.
+
+Use effort as a task-level control:
+
+```text
+Lower/default effort → exploration, lookup, formatting, routine edits
+Higher effort        → ambiguity, architecture, security, concurrency,
+                       difficult debugging, migration and failure analysis
+```
+
+Do not keep maximum effort enabled for every prompt. It can add latency and usage cost without improving deterministic work.
+
+Availability and level names depend on the selected model and Copilot surface.
+
+---
+
+## Slide 73 — Copilot CLI and VS Code Controls
+
+### Copilot CLI
+
+In an interactive session:
+
+```text
+/model
+```
+
+1. Select a reasoning model.
+2. Use the left and right arrow keys to change its reasoning level when options are available.
+3. Press Enter to apply it to the current session.
+
+If a turn is already running, the change applies after that turn finishes rather than changing the model midway through one response.
+
+### VS Code
+
+1. Open the model picker in the chat input.
+2. Select a reasoning model.
+3. Open the configuration arrow beside the model.
+4. Select an available effort level.
+
+Non-reasoning models do not expose this control.
+
+---
+
+## Slide 74 — Real Workshop Example: Effort by Phase
+
+### Default effort — collect evidence
+
+```text
+Inspect the repository for upload, storage, authorization, and
+background-processing patterns. Do not edit files. Cite exact paths.
+```
+
+This is mostly retrieval and classification. More reasoning is not automatically better.
+
+### Higher effort — resolve the difficult decisions
+
+Use `/model`, raise effort, then ask:
+
+```text
+Using the approved upload requirements, analyze tenant isolation,
+content validation, quarantine, duplicate detection, partial storage
+failures, compensation, and asynchronous scan states.
+Find contradictions and unsafe assumptions. Do not write code.
+```
+
+### Default or moderate effort — implement the approved slice
+
+```text
+Implement only the approved provider-neutral first slice.
+Follow the decision log and run the agreed tests.
+Do not redesign the architecture.
+```
+
+### Higher effort — targeted final review
+
+```text
+Review the diff for authorization bypass, content-validation gaps,
+partial-failure bugs, race conditions, and missing recovery tests.
+Do not modify files.
+```
+
+---
+
+## Slide 75 — When Higher Effort Is and Is Not Needed
+
+Increase effort when:
+
+- several valid designs have important trade-offs;
+- a bug survives normal investigation;
+- concurrency, authorization, money, or data loss is involved;
+- a migration or rollback must remain compatible;
+- multiple evidence sources conflict;
+- the cost of a wrong answer is high.
+
+Stay at default or lower effort when:
+
+- locating files or references;
+- summarizing a known diff;
+- applying an approved mechanical change;
+- formatting, renaming, or documentation work;
+- running deterministic tests and builds;
+- the task already has a precise contract and narrow scope.
+
+> Increase reasoning for a specific difficult decision, then reduce it again for routine execution. Effort does not replace requirements, evidence, tests, or review.
+
 ## Sources
 
 - GitHub Docs — Choosing a model in GitHub Copilot CLI: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/choose-a-model

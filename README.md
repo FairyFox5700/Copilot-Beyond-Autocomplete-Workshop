@@ -15,7 +15,7 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
 - `Participant-Worksheet.md` — four-minute exercise and answer key.
 - `Slides-Grill-Me-Module.md` — slide-ready material for requirements interviewing, prompt-versus-instructions-versus-skill, approval, and verification.
 - `Slides-Instruction-Hierarchy-Risks.md` — slides on conflicts, context overhead, scope, drift, troubleshooting, and a maintainable monorepo structure.
-- `Slides-Context-Window-and-Handoffs.md` — slides and real examples for scratchpads, checkpoints, subagents, evidence, model switching, and restartable handoffs.
+- `Slides-Context-Window-and-Handoffs.md` — slides and real examples for scratchpads, checkpoints, subagents, evidence, model and reasoning-effort switching, and restartable handoffs.
 - `demo/scenarios/file-upload-interview.md` — presenter answer key for the deliberately vague file-upload feature.
 - `demo/scenarios/instruction-hierarchy-audit.md` — deliberately conflicting monorepo instructions and the recommended redesign.
 - `demo/investigations/checkout-discount-checkpoint.md` — completed evidence ledger for the real checkout defect.

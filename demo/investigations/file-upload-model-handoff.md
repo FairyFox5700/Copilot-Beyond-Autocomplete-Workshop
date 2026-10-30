@@ -58,6 +58,18 @@ Do not silently choose these. Propose a provider-neutral interface where possibl
 
 Implement only the approved first slice, run focused and full verification, update this handoff, and review the diff.
 
+## Reasoning-effort plan
+
+| Phase | Suggested effort | Reason |
+|---|---|---|
+| Repository exploration | Default | Primarily retrieval, classification, and evidence collection |
+| Security and failure analysis | Higher | Tenant isolation, quarantine, compensation, and asynchronous states interact |
+| Approved implementation | Default or moderate | The contract and scope should already be explicit |
+| Targeted security review | Higher | Search for subtle authorization, race, and recovery defects |
+| Tests and build execution | Default | Results are deterministic and do not need extended reasoning |
+
+Reset effort after the difficult phase rather than leaving the highest level enabled for routine work.
+
 ## Required verification
 
 - Focused validation and authorization tests
