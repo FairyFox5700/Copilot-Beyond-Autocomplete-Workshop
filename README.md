@@ -14,7 +14,9 @@ A 30-minute, presenter-ready GitHub Copilot workshop with a runnable .NET checko
 - `Practical-Demo-Runbook.md` — click/run sequence and decision branches.
 - `Participant-Worksheet.md` — four-minute exercise and answer key.
 - `Slides-Grill-Me-Module.md` — slide-ready material for requirements interviewing, prompt-versus-instructions-versus-skill, approval, and verification.
+- `Slides-Instruction-Hierarchy-Risks.md` — slides on conflicts, context overhead, scope, drift, troubleshooting, and a maintainable monorepo structure.
 - `demo/scenarios/file-upload-interview.md` — presenter answer key for the deliberately vague file-upload feature.
+- `demo/scenarios/instruction-hierarchy-audit.md` — deliberately conflicting monorepo instructions and the recommended redesign.
 
 ## Demo structure
 
