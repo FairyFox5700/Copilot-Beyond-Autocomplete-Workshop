@@ -441,8 +441,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Verify-Fixed.
 
 Call out each layer as it appears:
 
-1. Focused checkout tests: 3 of 3 pass.
-2. Full solution tests: 3 of 3 pass.
+1. Focused checkout tests: 4 of 4 pass.
+2. Full solution tests: 4 of 4 pass.
 3. Solution build: 0 warnings, 0 errors.
 4. Console consumer: discount $10, total $100.
 
@@ -561,7 +561,7 @@ Loyalty discounts no longer reduce shipping charges.
 The checkout domain calculates the discount from merchandise subtotal only.
 
 ## Verification
-Focused tests: 3 passed. Full tests: 3 passed. Build succeeded.
+Focused tests: 4 passed. Full tests: 4 passed. Build succeeded.
 Visible example: discount $10.00; total $100.00.
 
 ## Risks and rollback
