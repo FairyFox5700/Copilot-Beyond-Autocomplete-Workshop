@@ -1011,6 +1011,45 @@ It records:
 
 **Important:** a scratchpad is not a stream-of-consciousness log. It is a maintained evidence ledger.
 
+### Generate it with the workshop skill
+
+The repository contains:
+
+```text
+.github/skills/evidence-checkpoint/SKILL.md
+.github/skills/evidence-checkpoint/templates/investigation-checkpoint.md
+.github/prompts/checkpoint-investigation.prompt.md
+```
+
+In Copilot CLI, reload and inspect the skill:
+
+```text
+/skills reload
+/skills info evidence-checkpoint
+```
+
+Then run the prompt file:
+
+```text
+/checkpoint-investigation
+```
+
+Give Copilot the task and output path:
+
+```text
+Investigate why the checkout example returns $99 instead of $100.
+Do not edit production code.
+Run `demo/scripts/Verify-Baseline.ps1` and record its exact result.
+
+Create `demo/investigations/live-checkout-checkpoint.md` from the
+evidence-checkpoint template. Every confirmed claim must cite an exact
+file and line range or a command result. Separate facts, decisions,
+hypotheses, rejected paths, risks, and the next action. Stop before
+implementation.
+```
+
+Copilot inspects the repository, runs the baseline verifier, and maintains the file as material evidence or decisions change.
+
 ---
 
 ## Slide 58 — Real Evidence Ledger
