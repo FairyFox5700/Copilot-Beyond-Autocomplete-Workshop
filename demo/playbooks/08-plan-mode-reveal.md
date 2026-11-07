@@ -1,5 +1,12 @@
 # Demo 8 — Plan Mode Reveal
 
+> Continues the chain from Demo 1 (fleet) → Demo 2 (checkpoint + model switch). The
+> root cause is already known and confirmed by two different models at this point —
+> Ask mode is included below only as a standalone fallback if you present this demo in
+> isolation. When chained after Demo 2, skip straight to Plan mode and say so explicitly,
+> so the audience sees the payoff of the earlier evidence work instead of a third
+> redundant explanation of the same bug.
+
 ## Prerequisite
 
 ```powershell
@@ -9,15 +16,25 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo\scripts\Verify-Baseli
 
 Expected final line: `BASELINE VERIFIED: exactly 3 passed, 1 intended failure, 0 skipped.`
 
-## Steps to show
+## Steps to show (chained after Demo 2 — recommended)
+
+1. Say: "We already know the root cause from the checkpoint — let's go straight to Plan mode instead of asking again."
+2. Open `demo/src/Store.Checkout/CheckoutCalculator.cs` and `demo/tests/Store.Checkout.Tests/CheckoutCalculatorTests.cs` in tabs.
+3. Switch to Plan mode. Run the Plan prompt below.
+4. **Before scrolling the generated plan**, ask the room: "What do you think it'll propose touching — just the calculator, or will it try to touch the tests too?"
+5. Scroll the real generated plan live. Point at the file-change scope it lists.
+6. Confirm out loud whether it scoped to the one narrow production file (matching the `checkout-engineer` agent's own rule: "prefer one narrow production change, never alter tests merely to obtain a green result") or whether it proposed touching the test file too.
+7. Move to implementation and verify.
+
+## Steps to show (standalone fallback — only if presenting this demo in isolation)
 
 1. Open `demo/src/Store.Checkout/CheckoutCalculator.cs` and `demo/tests/Store.Checkout.Tests/CheckoutCalculatorTests.cs` in tabs.
 2. Start in Ask mode. Run the Ask prompt below and let the answer render.
 3. Switch to Plan mode. Run the Plan prompt below.
 4. **Before scrolling the generated plan**, ask the room: "What do you think it'll propose touching — just the calculator, or will it try to touch the tests too?"
 5. Scroll the real generated plan live. Point at the file-change scope it lists.
-6. Confirm out loud whether it scoped to the one narrow production file (matching the `checkout-engineer` agent's own rule: "prefer one narrow production change, never alter tests merely to obtain a green result") or whether it proposed touching the test file too.
-7. Only after this discussion, move to implementation and verify.
+6. Confirm out loud whether it scoped to the one narrow production file or whether it proposed touching the test file too.
+7. Move to implementation and verify.
 
 ## Prompt (Ask mode)
 

@@ -6,6 +6,13 @@ higher-reasoning model continuing the work using only the checkpoint, with zero
 re-exploration. Both halves were verified live against this repository before being
 written down below.
 
+> Continues directly from Demo 1 (fleet investigation). Say: "Demo 1's fleet already
+> told us shipping is wrongly included in the discount base — instead of losing that
+> the moment this chat ends, let's preserve it as evidence." The Part 1 prompt below
+> deliberately re-confirms the same finding with a single model (rather than re-running
+> the fleet) so the room sees the fact survive the handoff, not just repeat the fleet's
+> work.
+
 ## Prerequisite
 
 ```powershell
@@ -81,6 +88,13 @@ var discountBase = merchandiseSubtotal;
 
 No change applied.
 ```
+
+## Hand off to Demo 8
+
+> "We now have the fix confirmed by two different models, from a checkpoint, without
+> either one needing to re-read the source. Let's actually apply it — that's Demo 8,
+> and since we already know the root cause, we can skip Ask mode and go straight to
+> Plan mode."
 
 ## Say this
 

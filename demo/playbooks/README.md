@@ -19,11 +19,19 @@ the exact prompt, expected outcome, and a reset step where relevant.
 
 ## Suggested 40-minute order
 
-3 → 4 → 5 → 10 → 8 → 2 → 7 → 9 → 6 (live ~1 min, anywhere it fits)
+3 → 4 → 5 → 10 → 1 → 2 → 8 → 7 → 9 → 6 (live ~1 min, anywhere it fits)
 
-Demo 2 now covers model/reasoning-effort switching live (Part 2 of that file) using the
-real evidence checkpoint produced in Part 1 — no separate static demo is needed for
-model switching.
+Demos 1, 2, and 8 are a single continuous narrative, not three independent bug
+investigations of the same checkout defect — present them back to back:
+
+1. **Demo 1** (fleet) — parallel read-only subagents investigate and find the root cause.
+2. **Demo 2** (evidence checkpoint) — a single model confirms and preserves that finding
+   as a durable artifact; then a second, higher-reasoning model continues from the
+   checkpoint alone, with zero re-exploration (the live model-switching moment).
+3. **Demo 8** (plan mode) — skip Ask mode (the root cause is already known) and go
+   straight to Plan mode to apply the fix, verify, and close the loop.
+
+Each file's "Say this" / hand-off notes carry the narration between them.
 
 ## Before presenting
 
