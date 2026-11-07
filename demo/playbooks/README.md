@@ -15,7 +15,7 @@ the exact prompt, expected outcome, and a reset step where relevant.
 | 7 | Context usage going red | `07-context-usage-audit.md` |
 | 8 | Plan mode reveal | `08-plan-mode-reveal.md` |
 | 9 | Copilot Fusion (live, ~2 min) | `09-copilot-fusion.md` |
-| 10 | Custom agent walkthrough (checkout-engineer) | `10-custom-agent-checkout-engineer.md` |
+| 10 | Custom agent walkthrough (csharp-conventions-reviewer) | `10-custom-agent-conventions-reviewer.md` |
 | 12 | Copilot Memory (user preferences and repository facts) | `12-copilot-memory.md` |
 
 ## Suggested 40-minute order
