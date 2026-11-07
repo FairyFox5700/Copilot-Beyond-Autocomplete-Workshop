@@ -7,6 +7,9 @@
 - Make the smallest change that satisfies the stated contract.
 - Never weaken or delete a failing test merely to make the suite pass.
 - Before claiming completion, run the focused tests, the full solution tests, and the solution build. Report the commands and results.
+- Each project has a single clear responsibility; respect existing project boundaries instead of adding cross-cutting logic to the wrong layer.
+- Prefer thrown exceptions over ad hoc logging for error reporting; do not introduce a logging framework unless the task explicitly asks for one.
+- If tests or the build fail, stop and report the failure with evidence instead of guessing a fix or weakening the check.
 
 ## C# conventions
 
