@@ -14,7 +14,7 @@ the exact prompt, expected outcome, and a reset step where relevant.
 | 6 | Skill health check (skill-doctor, live ~1 min) | `06-skill-doctor-mention.md` |
 | 7 | Context usage going red | `07-context-usage-audit.md` |
 | 8 | Plan mode reveal | `08-plan-mode-reveal.md` |
-| 9 | Copilot Fusion (slide only) | `09-copilot-fusion.md` |
+| 9 | Copilot Fusion (live, ~2 min) | `09-copilot-fusion.md` |
 | 10 | Custom agent walkthrough (checkout-engineer) | `10-custom-agent-checkout-engineer.md` |
 
 ## Suggested 40-minute order
