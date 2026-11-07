@@ -17,6 +17,7 @@ the exact prompt, expected outcome, and a reset step where relevant.
 | 9 | Model / reasoning-effort switching | `09-model-reasoning-handoff.md` |
 | 10 | Copilot Fusion (slide only) | `10-copilot-fusion.md` |
 | 11 | Custom agent walkthrough (checkout-engineer) | `11-custom-agent-checkout-engineer.md` |
+| 12 | Copilot Memory (user preferences and repository facts) | `12-copilot-memory.md` |
 
 ## Suggested 40-minute order
 
