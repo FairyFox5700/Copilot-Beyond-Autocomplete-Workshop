@@ -7,21 +7,32 @@ the exact prompt, expected outcome, and a reset step where relevant.
 | # | Demo | File |
 |---|---|---|
 | 1 | Fleet checkout investigation | `01-fleet-checkout-investigation.md` |
-| 2 | Evidence checkpoint | `02-evidence-checkpoint.md` |
+| 2 | Evidence checkpoint + live model switching | `02-evidence-checkpoint.md` |
 | 3 | Generate Copilot instructions (`/init`) | `03-generate-copilot-instructions.md` |
 | 4 | Instruction hierarchy conflict (contradictory libraries) | `04-instruction-hierarchy-conflict.md` |
 | 5 | Scoped instructions stay out of context (migrations) | `05-scoped-migration-instructions.md` |
 | 6 | Skill health check (skill-doctor, live ~1 min) | `06-skill-doctor-mention.md` |
 | 7 | Context usage going red | `07-context-usage-audit.md` |
 | 8 | Plan mode reveal | `08-plan-mode-reveal.md` |
-| 9 | Model / reasoning-effort switching | `09-model-reasoning-handoff.md` |
-| 10 | Copilot Fusion (slide only) | `10-copilot-fusion.md` |
-| 11 | Custom agent walkthrough (checkout-engineer) | `11-custom-agent-checkout-engineer.md` |
+| 9 | Copilot Fusion (live, ~2 min) | `09-copilot-fusion.md` |
+| 10 | Custom agent walkthrough (checkout-engineer) | `10-custom-agent-checkout-engineer.md` |
 | 12 | Copilot Memory (user preferences and repository facts) | `12-copilot-memory.md` |
 
 ## Suggested 40-minute order
 
-3 → 4 → 5 → 11 → 8 → 7 → 9 → 10 → 6 (mention only, anywhere it fits)
+3 → 4 → 5 → 10 → 1 → 2 → 8 → 7 → 9 → 6 (live ~1 min, anywhere it fits)
+
+Demos 1, 2, and 8 are a single continuous narrative, not three independent bug
+investigations of the same checkout defect — present them back to back:
+
+1. **Demo 1** (fleet) — parallel read-only subagents investigate and find the root cause.
+2. **Demo 2** (evidence checkpoint) — a single model confirms and preserves that finding
+   as a durable artifact; then a second, higher-reasoning model continues from the
+   checkpoint alone, with zero re-exploration (the live model-switching moment).
+3. **Demo 8** (plan mode) — skip Ask mode (the root cause is already known) and go
+   straight to Plan mode to apply the fix, verify, and close the loop.
+
+Each file's "Say this" / hand-off notes carry the narration between them.
 
 ## Before presenting
 
