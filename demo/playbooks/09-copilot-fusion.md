@@ -1,7 +1,8 @@
-# Demo 10 — Copilot Fusion (slide only, no live run)
+# Demo 9 — Copilot Fusion (slide only, no live run)
 
 > Routing is non-deterministic and the decision latency is not worth showing live in a
-> 40-minute slot. This is a one-slide capstone right after Demo 9.
+> 40-minute slot. This is a one-slide capstone right after the model-switching half of
+> Demo 2.
 
 ## Steps to show
 

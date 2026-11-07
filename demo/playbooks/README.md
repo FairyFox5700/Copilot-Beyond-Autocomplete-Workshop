@@ -7,20 +7,23 @@ the exact prompt, expected outcome, and a reset step where relevant.
 | # | Demo | File |
 |---|---|---|
 | 1 | Fleet checkout investigation | `01-fleet-checkout-investigation.md` |
-| 2 | Evidence checkpoint | `02-evidence-checkpoint.md` |
+| 2 | Evidence checkpoint + live model switching | `02-evidence-checkpoint.md` |
 | 3 | Generate Copilot instructions (`/init`) | `03-generate-copilot-instructions.md` |
 | 4 | Instruction hierarchy conflict (contradictory libraries) | `04-instruction-hierarchy-conflict.md` |
 | 5 | Scoped instructions stay out of context (migrations) | `05-scoped-migration-instructions.md` |
 | 6 | Skill health check (skill-doctor, live ~1 min) | `06-skill-doctor-mention.md` |
 | 7 | Context usage going red | `07-context-usage-audit.md` |
 | 8 | Plan mode reveal | `08-plan-mode-reveal.md` |
-| 9 | Model / reasoning-effort switching | `09-model-reasoning-handoff.md` |
-| 10 | Copilot Fusion (slide only) | `10-copilot-fusion.md` |
-| 11 | Custom agent walkthrough (checkout-engineer) | `11-custom-agent-checkout-engineer.md` |
+| 9 | Copilot Fusion (slide only) | `09-copilot-fusion.md` |
+| 10 | Custom agent walkthrough (checkout-engineer) | `10-custom-agent-checkout-engineer.md` |
 
 ## Suggested 40-minute order
 
-3 → 4 → 5 → 11 → 8 → 7 → 9 → 10 → 6 (mention only, anywhere it fits)
+3 → 4 → 5 → 10 → 8 → 2 → 7 → 9 → 6 (live ~1 min, anywhere it fits)
+
+Demo 2 now covers model/reasoning-effort switching live (Part 2 of that file) using the
+real evidence checkpoint produced in Part 1 — no separate static demo is needed for
+model switching.
 
 ## Before presenting
 

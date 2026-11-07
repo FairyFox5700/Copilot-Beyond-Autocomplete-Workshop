@@ -1,4 +1,4 @@
-# Demo 11 — Custom Agent Walkthrough (checkout-engineer)
+# Demo 10 — Custom Agent Walkthrough (checkout-engineer)
 
 ## Fixture (already committed)
 
