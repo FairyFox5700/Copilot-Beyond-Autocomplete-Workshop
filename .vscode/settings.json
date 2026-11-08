@@ -1,0 +1,31 @@
+{
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.minimumContrastRatio": 7,
+  "terminal.integrated.fontSize": 16,
+  "workbench.colorCustomizations": {
+    "terminal.background": "#09090B",
+    "terminal.foreground": "#FFFFFF",
+    "terminalCursor.background": "#09090B",
+    "terminalCursor.foreground": "#FF8AD8",
+    "terminal.selectionBackground": "#FF8AD8",
+    "terminal.selectionForeground": "#09090B",
+    "terminal.ansiBlack": "#09090B",
+    "terminal.ansiRed": "#FF8DA1",
+    "terminal.ansiGreen": "#C3FF3D",
+    "terminal.ansiYellow": "#FFF080",
+    "terminal.ansiBlue": "#A6C8FF",
+    "terminal.ansiMagenta": "#FF8AD8",
+    "terminal.ansiCyan": "#8DEFFF",
+    "terminal.ansiWhite": "#FFFFFF",
+    "terminal.ansiBrightBlack": "#B8B8C8",
+    "terminal.ansiBrightRed": "#FFB3C1",
+    "terminal.ansiBrightGreen": "#DDFF99",
+    "terminal.ansiBrightYellow": "#FFF7B3",
+    "terminal.ansiBrightBlue": "#D0E2FF",
+    "terminal.ansiBrightMagenta": "#FFB8E9",
+    "terminal.ansiBrightCyan": "#C2F7FF",
+    "terminal.ansiBrightWhite": "#FFFFFF"
+  }
+}
