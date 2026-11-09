@@ -44,11 +44,9 @@ Say:
 > Copilot instructions? The simple way to understand this: if you want your agent to
 > remember something every time, put it there. Let's say you have guidance on the
 > architecture you use inside your project. You have guidance that you use spec-driven
-> development. You have guidance that you use test-driven development. You have
-> guidance that you use pipelines, not transforms. You have guidance about safety rules.
+> development. You have guidance that you use test-driven development. You have guidance about safety rules.
 > You have guidance that you use a specific library for validation, but not another one.
-> You want to make sure tests are always executed when you run the pipeline, even when
-> you commit a change. That's exactly what this is for.
+>  That's exactly what this is for.
 >
 > And there's a useful command that can generate this for you in the repository.
 > Usually you need a command, and if you look at what's inside this init command, it
@@ -185,15 +183,6 @@ Demo steps (all in the same interactive session):
    ```
    Confirm the migration rules now **appear**.
 
-Say:
-
-> "Architecture should be committed and maintained as a source of truth, ideally
-> treated as a puzzle piece and kept maintainable alongside your codebase. The more
-> drift it has from your codebase, the harder it is to understand. There's a nice skill
-> called skill-doctor, which deals with exactly that situation of drifting state — we'll
-> actually run that one live a bit later. Treat the instructions simply as instructions,
-> like you'd treat a human — we sometimes follow them, sometimes we don't. Ideally,
-> keep global instructions small."
 
 ---
 
@@ -268,13 +257,7 @@ File: `demo/playbooks/05-fleet-checkout-investigation.md`
 
 Say:
 
-> "Now the next thing: people forget simple things about the software development
-> process. A lot of the time I see that, by default, the interactive window is open,
-> but there are different modes that exist. One of the simplest to start with is Ask —
-> like asking a colleague. Let's say you're asked to change the behavior of a specific
-> calculation. It's a new codebase, a million lines of code. You don't know everything,
-> and you don't want to know everything — you only want to know exactly that one thing.
->
+
 > Here's a variant of that worth showing: instead of one model doing a long serial
 > exploration, you can split the investigation across separate read-only researchers and
 > have them converge on one answer."
@@ -562,7 +545,14 @@ File: `demo/playbooks/10-skill-doctor-mention.md`
 
 Say:
 
-> "One more quick one, and it's a different kind of check than everything else today —
+>"Architecture should be committed and maintained as a source of truth, ideally
+> treated as a puzzle piece and kept maintainable alongside your codebase. The more
+> drift it has from your codebase, the harder it is to understand. There's a nice skill
+> called skill-doctor, which deals with exactly that situation of drifting state — we'll
+> actually run that one live a bit later. Treat the instructions simply as instructions,
+> like you'd treat a human — we sometimes follow them, sometimes we don't. Ideally,
+> keep global instructions small."
+ "One more quick one, and it's a different kind of check than everything else today —
 > not about instructions contradicting each other, but about whether your skills
 > themselves are well-formed."
 

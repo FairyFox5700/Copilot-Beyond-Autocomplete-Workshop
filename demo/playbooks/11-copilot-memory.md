@@ -2,7 +2,11 @@
 
 ## [Enable user-level preferences](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory/manage-for-yourself#disabling-or-enabling-copilot-memory)
 
+## [Open your Copilot settings - Features > Copilot Memory](https://github.com/settings/copilot)
+
 ## [Enable repository-level facts](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory/manage-as-administrator#managing-copilot-memory-for-repositories)
+
+## [Open this repository's Copilot Memory settings](https://github.com/FairyFox5700/Copilot-Beyond-Autocomplete-Workshop/settings/copilot/memory)
 
 ## Enable memory in the Copilot CLI session
 

@@ -23,4 +23,4 @@
 - Async methods must be suffixed `Async` and accept/pass a `CancellationToken` when they do I/O (database, file, network).
 - Avoid LINQ chains that re-enumerate (`.Count()` after `.Where()` then `.ToList()` again); materialize once with `.ToList()`/`.ToArray()` when a sequence is used more than once.
 - Do not use exceptions for expected control flow in hot paths (e.g. normal validation failures at the API boundary); reserve thrown exceptions for truly exceptional, programmer-error conditions as this codebase already does in `CheckoutCalculator`.
-- Comments should explain *why*, not *what* — the one existing exception in this repo (`// Intentional workshop bug: shipping must never be discounted.`) marks a deliberate defect, not a style template; do not add narrative comments restating the code.
+- Comments should explain *why*, not *what*
